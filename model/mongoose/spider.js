@@ -67,8 +67,18 @@ async function registerSpider(spider) {
   return created;
 }
 
+async function updateSpiderMsg(spider, latestId) {
+  const { _id } = spider
+  spider["contentList"]["latestId"] = latestId;
+  const updated = await SpiderModel.findOneAndUpdate(
+    {  _id: _id }, 
+    spider
+  )
+}
+
 
 module.exports = {
   model: SpiderModel,
   registerSpider,
+  updateSpiderMsg
 };

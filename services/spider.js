@@ -66,7 +66,7 @@ async function registerService (spider) {
 
 async function startFetchingProcess (spider) {
   const { contentList } = spider;
-  let { latestId } = spider;
+  let { latestId } = contentList;
   const { url, fequencyLimit, pageSizeLimit } = contentList;
 
   const actualPeriodMills = Math.ceil(1000 / fequencyLimit) * 2;
@@ -85,11 +85,10 @@ async function startFetchingProcess (spider) {
       }));
       await Content.model.insertMany(wrappedList);
       latestId = wrappedList[wrappedList.length - 1].spiderServiceContentId;
+      await Spider.updateSpiderMsg(spider, latestId)
       if(wrappedList.length < pageSizeLimit) {
-        console.log('clear')
         clearInterval(intervalId);
       }
-      console.log(wrappedList.length, pageSizeLimit, actualPeriodMills, fequencyLimit, latestId)
     } catch(e) {
       logger.error('list to mongo error', {
         errMsg: e.message,
@@ -131,19 +130,6 @@ async function initSpiders() {
       });
   }
 }
-
-// initSpiders()
-//   .catch((e) => {
-//     logger.error(
-//       'error initializing spider processes',
-//       {
-//         errMsg: e.message,
-//         errStack: e.stack,
-//       },
-//     );
-//   });
-
-
 
 
 module.exports = {

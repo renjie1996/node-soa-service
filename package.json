@@ -1,0 +1,27 @@
+{
+  "name": "lesson2-express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "pm2": "pm2 start ./bin/www",
+    "status": "for i in $(seq 0 7); echo $(pm2 show $i | grep restarts)"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "bluebird": "^3.5.1",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "elasticsearch": "^14.1.0",
+    "express": "~4.15.5",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.6",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5",
+    "winston": "^2.4.0",
+    "winston-daily-rotate-file": "^1.7.2"
+  }
+}

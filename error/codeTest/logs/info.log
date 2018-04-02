@@ -1,0 +1,32 @@
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-02T13:06:25.054Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-02T13:27:04.624Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-02T13:34:24.967Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-02T13:34:24.969Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-02T13:34:36.767Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-02T13:34:36.769Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-02T13:34:41.939Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-02T13:34:41.941Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-02T13:34:42.990Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-02T13:34:42.992Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T02:15:40.666Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T02:15:40.668Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T02:15:53.505Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T02:15:53.507Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T02:31:03.496Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T02:31:03.498Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T02:31:19.856Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T02:31:19.860Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T02:33:12.667Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T02:33:12.669Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T02:33:47.887Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T02:33:47.889Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T06:54:07.358Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T06:54:07.360Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T06:54:09.110Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T06:54:09.112Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T06:55:48.965Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T06:55:48.967Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T06:56:43.254Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T06:56:43.256Z"}
+{"level":"info","message":"my first log with winston","timestamp":"2018-01-03T06:56:59.395Z"}
+{"level":"error","message":"error warning","timestamp":"2018-01-03T06:56:59.397Z"}

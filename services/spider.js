@@ -6,7 +6,6 @@ const HttpBaseError = require('../error/httpBaseError/http_base_error');
 const Content = require('../model/mongoose/content');
 
 async function registerService (spider) {
-  console.log(spider)
   const validations = {
     name: name => {
       if(!name) throw new ParamError('name', '名字不能为空！', 'a spider name is not empty');
@@ -113,6 +112,7 @@ async function fetchingList (url, latestId, pageSize) {
 };
 
 // 如果spiders的量上去了，这里启动会非常慢
+// 尝试切子进程
 async function initSpiders() {
   // const spiders = await Spider.model.find({ status: 'validated' });
   const spiders = await Spider.model.find({});

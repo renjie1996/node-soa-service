@@ -11,13 +11,6 @@ const auth = require('../middleware/auth')
  */
 
 /* GET users listing. */
-// router.get('/', async (req, res) => {
-//   throw new HttpReqParamsError('page', '请指定页码', 'cannot not exist id')
-//   const users = await userService.getAllUsers()
-//   res.locals.users = users // 等于 res.render('user', {user})
-//   res.render('users')
-// });
-
 router.get('/', (req, res, next) => {
   (async () => {
     throw new HttpReqParamsError('page', '请指定页码', 'cannot not exist id')
@@ -46,6 +39,7 @@ router.post('/', async (req, res, next) => {
   res.json(user)
 });
 
+
 router.get('/:userId', async (req, res) => {
   try {
     if(req.params.userId.length < 5) {
@@ -67,31 +61,8 @@ router.get('/:userId', async (req, res) => {
     console.log(e)
     res.json(e)
   }
-  
-  // try {
-  //   const user = await userService.getUserById(req.params.userId)
-  //     .catch(e => {
-  //       console.log(e.message)
-
-        // throw new HttpReqParamsError(
-        //   'userId',
-        //   '用户id不能为空',
-        //   'user id is can not be empty!'
-        // )
-  //     })
-  //   // if(!user) throw new HttpReqParamsError(
-  //   //   'userId',
-  //   //   '用户id不能为空',
-  //   //   'user id is can not be empty!'
-  //   // )
-    // res.locals.user = user
-    // res.render('user')
-  // } catch (e) {
-    // console.log(e)
-    // res.json(e)
-  // }
-  
 })
+
 
 router.post('/subscription/:userId', auth(), async (req, res, next) => {
   try {

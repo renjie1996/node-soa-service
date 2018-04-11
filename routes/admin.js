@@ -19,7 +19,7 @@ router.route('/spider').post(async (req, res, next) => {
 });
 
 
-router.route('/init').get(async (req, res, next) => {
+router.route('/sync').get(async (req, res, next) => {
   try {
     SpiderService.initSpiders()
       .catch((e) => {

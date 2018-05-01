@@ -19,6 +19,7 @@ module.exports = options => async (req, res, next) => {
     // 认证信息
     try {
       const user = JWT.verify(token, JWT_CONFIG.SECRET)   
+      console.log(user)
       req.user = user
       next()   
     } catch(e) {

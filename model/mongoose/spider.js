@@ -76,6 +76,10 @@ async function updateSpiderMsg(spider, latestId) {
   )
 }
 
+// async function resetSpider(spider) {
+
+// }
+
 
 module.exports = {
   model: SpiderModel,

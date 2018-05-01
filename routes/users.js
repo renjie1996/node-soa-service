@@ -4,6 +4,7 @@ const userService = require('../services/user')
 const subscriptionServer = require('../services/subscription')
 const HttpReqParamsError = require('../error/httpBaseError/http_request_error')
 const auth = require('../middleware/auth')
+const apiRes = require('../utils/response_format');
 
 /**
  * 1. koa 原生支持把路由回调写成async，但是express原生不支持，Error难以catch，需要每个做一次try catch
@@ -63,19 +64,6 @@ router.get('/:userId', async (req, res) => {
   }
 })
 
-
-router.post('/subscription/:userId', auth(), async (req, res, next) => {
-  try {
-    console.log(req.body)
-    const sub = await subscriptionServer.createSubscription(req.params.userId, req.body.url)
-    res.json(sub)
-  } catch (e) {
-    console.log(e)
-    next(e)
-  }
-})
-
-
 router.post('/login', async (req, res, next) => {
   try {
     const { username, password } = req.body
@@ -85,6 +73,68 @@ router.post('/login', async (req, res, next) => {
     console.log(e)
     next(e)
   }
+});
+
+
+router.post('/:userId/subscription', auth(), async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const { subscriptionType, sourceId } = req.body;
+    const sub = await subscriptionServer.createSubscription(
+      userId,
+      subscriptionType,
+      sourceId,
+    );
+    res.json(sub)
+  } catch (e) {
+    console.log(e)
+    next(e)
+  }
 })
+// router.use(auth());
+
+// router.post('/:userId/subscription', auth(), async (req, res, next) => {
+//   try {
+//     const { userId } = req.params;
+//     const { subscriptionType, sourceId } = req.body;
+//     const sub = await subscriptionServer.createSubscription(
+//       userId,
+//       subscriptionType,
+//       sourceId,
+//     );
+//     res.data =  {
+//       sub,
+//     };
+//     apiRes(req, res);
+//   } catch(e) {
+//     next(e);
+//   }
+// })
+
+router.get('/:userId/subContent', auth(), (req, res, next) => {
+  (async () => {
+    const { userId } = req.params;
+    let { page, pageSize } = req.query;
+    page = Number(page) || 0;
+    pageSize = Number(pageSize) || 10;
+
+    const contents = await subscriptionServer.getSpiderServiceContents({
+      userId,
+      page,
+      pageSize,
+    });
+    return {
+      contents,
+    };
+  })()
+    .then((r) => {
+      res.data = r;
+      apiRes(req, res);
+    })
+    .catch((e) => {
+      next(e);
+    });
+});
+
 
 module.exports = router;

@@ -10,10 +10,15 @@ const SubscriptionSchema = new Schema({
     required: true,
     index: 1
   },
-  url: {
+  type: {
     type: String,
-    required: true
-  }
+    enum: ['spider_service', 'tag'],
+    required: true,
+  },
+  sourceId: {
+    type: ObjectId,
+    required: true,
+  },
 });
 
 const SubscriptionModel = mongoose.model('subscription', SubscriptionSchema);
@@ -35,8 +40,19 @@ async function findByUserId(userId) {
   return sub;
 };
 
+async function upsert(sub) {
+  const upserted = await SubscriptionModel.findOneAndUpdate(sub, sub, {
+    new: true,
+    upsert: true,
+  });
+  return upserted;
+};
+
+
 module.exports = {
+  SubscriptionModel,
   list,
   insert,
-  findByUserId
+  findByUserId,
+  upsert
 };

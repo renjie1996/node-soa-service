@@ -4,6 +4,7 @@ const axios = require('axios');
 const logger = require('../utils/loggers/logger');
 const HttpBaseError = require('../error/httpBaseError/http_base_error');
 const Content = require('../model/mongoose/content');
+const ES = require('./elasticSearch');
 
 async function registerService (spider) {
   const validations = {
@@ -82,12 +83,14 @@ async function startFetchingProcess (spider) {
         tags: c.tags,
         title: c.title,
       }));
-      await Content.model.insertMany(wrappedList);
+      const inserted = await Content.model.insertMany(wrappedList);
       latestId = wrappedList[wrappedList.length - 1].spiderServiceContentId;
-      await Spider.updateSpiderMsg(spider, latestId)
+      await Spider.updateSpiderMsg(spider, latestId) // 更新游标
       if(wrappedList.length < pageSizeLimit) {
         clearInterval(intervalId);
       }
+
+      await ES.createOrUpdateContents(inserted);
     } catch(e) {
       logger.error('list to mongo error', {
         errMsg: e.message,

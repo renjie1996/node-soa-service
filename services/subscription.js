@@ -20,7 +20,6 @@ async function createSubscription(userId, subscriptionType, sourceId) {
 }
 
 async function getSpiderServiceContents(query = { page: 0, pageSize: 10 }) {
-  console.log(query)
   const subs = await Subscription.SubscriptionModel.find({
     userId: query.userId,
     type: 'spider_service',
@@ -28,7 +27,6 @@ async function getSpiderServiceContents(query = { page: 0, pageSize: 10 }) {
     _id: 0,
     sourceId: 1,
   });
-  console.log('123', subs)
   const spiderServiceIds = subs.map(s => s.sourceId);
   const flow = Content.model.find({
     spiderServiceId: { $in: spiderServiceIds },

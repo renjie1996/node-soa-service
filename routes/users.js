@@ -91,25 +91,6 @@ router.post('/:userId/subscription', auth(), async (req, res, next) => {
     next(e)
   }
 })
-// router.use(auth());
-
-// router.post('/:userId/subscription', auth(), async (req, res, next) => {
-//   try {
-//     const { userId } = req.params;
-//     const { subscriptionType, sourceId } = req.body;
-//     const sub = await subscriptionServer.createSubscription(
-//       userId,
-//       subscriptionType,
-//       sourceId,
-//     );
-//     res.data =  {
-//       sub,
-//     };
-//     apiRes(req, res);
-//   } catch(e) {
-//     next(e);
-//   }
-// })
 
 router.get('/:userId/subContent', auth(), (req, res, next) => {
   (async () => {

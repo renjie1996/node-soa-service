@@ -2,7 +2,7 @@ const es = require('../services/elasticSearch');
 require('../services/mongoose.connection');
 
 es.searchByTag({
-  tag: '美食',
+  tag: '数码',
   page: 0,
   pageSize: 10
 }).then(r => {
